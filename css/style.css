@@ -157,6 +157,7 @@ nav a:hover {
     transition: 0.3s;
     cursor: pointer;
     border: none;
+    text-decoration: none;
 }
 
 .btn-shop:hover {
@@ -307,6 +308,7 @@ nav a:hover {
 }
 
 .product:hover {
+    background: #fff5f5;
     transform: translateY(-5px);
     box-shadow: 0 5px 15px rgba(0,0,0,0.1);
 }
@@ -340,13 +342,36 @@ nav a:hover {
 }
 
 /* 5 تنسيق زر اضافة المنتج*/ 
-.product .btn-add-cart {
+/* .product .btn-add-cart {
     width: 100%;
     padding: 10px;
     font-size: 0.9rem;
     background-color: #671D2D;
     color: #FAF7F2;
+} */
+
+.btn-add-cart {
+    background-color: var(--primary-color);
+    color: var(--white);
+    padding: 12px 40px; 
+    border-radius: 30px;
+    font-size: 1rem;
+    font-weight: 600;
+    text-transform: uppercase; 
+    letter-spacing: 1px;
+    transition: 0.3s;
+    cursor: pointer;
+    border: none;
 }
+
+.btn-add-cart:hover {
+    background-color: var(--accent-hover); 
+    color: var(--white);      
+    transform: translateY(-4px) scale(1.03); 
+    box-shadow: 0 8px 15px rgba(255, 183, 197, 0.4); 
+    animation: pulseEffect 1.5s infinite; 
+}
+
 
 /*  أزرار الفلترة */
 .filters {
@@ -355,12 +380,12 @@ nav a:hover {
 }
 
 .filters button {
-    background-color: #671D2D;
-    color: #FAF7F2;
+    background-color: var(--primary-color);
+    color: var(--white);
     border: none;
     padding: 10px 20px;
     margin: 5px;
-    border-radius: 25px; /* شكل دائري */
+    border-radius: 30px; /* شكل دائري */
     cursor: pointer;
     font-size: 14px;
     transition: 0.3s;
@@ -368,6 +393,9 @@ nav a:hover {
 }
 
 .filters button:hover {
-    background-color: #E2C2C6;
-    color: #2A1B18;
+    background-color: var(--accent-hover); 
+    color: var(--white);      
+    transform: translateY(-4px) scale(1.03); 
+    box-shadow: 0 8px 15px rgba(255, 183, 197, 0.4); 
+    animation: pulseEffect 1.5s infinite; 
 }
