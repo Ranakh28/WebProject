@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Makeup Store | Luxury Beauty</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+<header>
+    <div class="logo"><a href="../html/homePage.html">Makeup.</a></div>
+    <nav>
+        <a href="../html/homePage.html">Home</a>
+        <a href="#">About</a>
+        <a href="#">Products</a>
+        <a href="../html/admin_dashboard.html">Dashboard</a>
+        <a href="#">Contact</a>
+    </nav>
+    <div class="header-tools">
+        <div class="search-box">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" placeholder="Search...">
+        </div>
+        <div class="icons">
+            <i class="fa-regular fa-heart"></i>
+            <i class="fa-solid fa-cart-shopping"></i>
+            <i class="fa-regular fa-user"></i>
+        </div>
+    </div>
+</header>
+
+<h1 style="text-align:center; margin-top:30px;">Our Products</h1>
+
+<div class="filters">
+    <button onclick="filterProducts('all')">All</button>
+    <button onclick="filterProducts('eyes')">Eyes</button>
+    <button onclick="filterProducts('lips')">Lips</button>
+    <button onclick="filterProducts('face')">Face</button>
+</div>
+
+<div class="products" id="productList">
+    
+    <div class="product" data-category="lips">
+        <img src="../images/lipstick.jpg" alt="Lipstick">
+        <h3>Node Matte</h3>
+        <p class="category">Lips</p>
+        <p class="price">150 SAR</p>
+        <button class="btn-add-cart" onclick="addToCart('Node Matte', 150)">Add to Cart</button>
+    </div>
+    <div class="product" data-category="lips">
+        <img src="../images/lipstick1.jpg" alt="Lipstick">
+        <h3>Velvet Matte</h3>
+        <p class="category">Lips</p>
+        <p class="price">155 SAR</p>
+        <button class="btn-add-cart" onclick="addToCart('Velvet Matte', 155)">Add to Cart</button>
+    </div>
+    <div class="product" data-category="lips">
+        <img src="../images/lipstick2.jpg" alt="Lipstick">
+        <h3>Classic Red Lipstick</h3>
+        <p class="category">Lips</p>
+        <p class="price">145 SAR</p>
+        <button class="btn-add-cart" onclick="addToCart('Classic Red Lipstick', 145)">Add to Cart</button>
+    </div>
+
+    <div class="product" data-category="eyes">
+        <img src="../images/mascara1.jpg" alt="Mascara">
+        <h3>Volume Mascara</h3>
+        <p class="category">Eyes</p>
+        <p class="price">70 SAR</p>
+        <button class="btn-add-cart" onclick="addToCart('Volume Mascara', 70)">Add to Cart</button>
+    </div>
+    <div class="product" data-category="eyes">
+        <img src="../images/eyeliner.jpg" alt="Eyeliner">
+        <h3>Black Eyeliner</h3>
+        <p class="category">Eyes</p>
+        <p class="price">55 SAR</p>
+        <button class="btn-add-cart" onclick="addToCart('Black Eyeliner', 55)">Add to Cart</button>
+    </div>
+    <div class="product" data-category="eyes">
+        <img src="../images/eyeshadow.jpg" alt="Eyeshadow">
+        <h3>Nude Palette</h3>
+        <p class="category">Eyes</p>
+        <p class="price">185 SAR</p>
+        <button class="btn-add-cart" onclick="addToCart('Nude Palette', 185)">Add to Cart</button>
+    </div>
+    <div class="product" data-category="eyes">
+        <img src="../images/eyeshadow1.jpg" alt="Eyeshadow">
+        <h3>Glow Palette</h3>
+        <p class="category">Eyes</p>
+        <p class="price">185 SAR</p>
+        <button class="btn-add-cart" onclick="addToCart('Glow Palette', 185)">Add to Cart</button>
+    </div>
+    <div class="product" data-category="eyes">
+        <img src="../images/mascara3.jpg" alt="Mascara">
+        <h3>Brown Volume Mascara</h3>
+        <p class="category">Eyes</p>
+        <p class="price">90 SAR</p>
+        <button class="btn-add-cart" onclick="addToCart('Brown Volume Mascara', 90)">Add to Cart</button>
+    </div>
+
+    <div class="product" data-category="face">
+        <img src="../images/foundation1.jpg" alt="Foundation">
+        <h3>Full Coverage Foundation</h3>
+        <p class="category">Face</p>
+        <p class="price">220 SAR</p>
+        <button class="btn-add-cart" onclick="addToCart('Full Coverage Foundation', 220)">Add to Cart</button>
+    </div>
+    <div class="product" data-category="face">
+        <img src="../images/foundation3.jpg" alt="Foundation">
+        <h3>Light Foundation</h3>
+        <p class="category">Face</p>
+        <p class="price">250 SAR</p>
+        <button class="btn-add-cart" onclick="addToCart('Light Coverage Foundation', 250)">Add to Cart</button>
+    </div>
+    <div class="product" data-category="face">
+        <img src="../images/foundation5.jpg" alt="Foundation">
+        <h3>Dark Foundation</h3>
+        <p class="category">Face</p>
+        <p class="price">250 SAR</p>
+        <button class="btn-add-cart" onclick="addToCart('Dark Coverage Foundation', 250)">Add to Cart</button>
+    </div>
+    <div class="product" data-category="face">
+        <img src="../images/blush.jpg" alt="Blush">
+        <h3>Pink Blush</h3>
+        <p class="category">Face</p>
+        <p class="price">60 SAR</p>
+        <button class="btn-add-cart" onclick="addToCart('Pink Blush', 60)">Add to Cart</button>
+    </div>
+    <div class="product" data-category="face">
+        <img src="../images/blush1.jpg" alt="Blush">
+        <h3>Red Blush</h3>
+        <p class="category">Face</p>
+        <p class="price">60 SAR</p>
+        <button class="btn-add-cart" onclick="addToCart('Red Blush', 60)">Add to Cart</button>
+    </div>
+    <div class="product" data-category="face">
+        <img src="../images/countur.jpg" alt="Contour">
+        <h3>Contour Stick</h3>
+        <p class="category">Face</p>
+        <p class="price">90 SAR</p>
+        <button class="btn-add-cart" onclick="addToCart('Contour Stick', 90)">Add to Cart</button>
+    </div>
+    <div class="product" data-category="face">
+        <img src="../images/primer.jpg" alt="Primer">
+        <h3>Silk Primer</h3>
+        <p class="category">Face</p>
+        <p class="price">75 SAR</p>
+        <button class="btn-add-cart" onclick="addToCart('Silk Primer', 75)">Add to Cart</button>
+    </div>
+</div>
+<footer class="main-footer">
+    <div class="footer-grid">
+        <div class="footer-col">
+            <h3>Company</h3>
+            <ul>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Our Story</a></li>
+                <li><a href="#">Careers</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h3>Customer Service</h3>
+            <ul>
+                <li><a href="#">Track Order</a></li>
+                <li><a href="#">Return Policy</a></li>
+                <li><a href="#">Contact Us</a></li>
+            </ul>
+        </div>
+    </div>
+</footer>
+
+<script src="../js/shop.js"></script>
+
+</body>
+</html>
