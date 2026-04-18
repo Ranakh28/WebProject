@@ -1,20 +1,23 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const faqQuestions = document.querySelectorAll('.faq-question');
+    const faqButtons = document.querySelectorAll('.faq-question');
 
-    faqQuestions.forEach(button => {
-        button.addEventListener('click', () => {
-            const currentItem = button.parentElement;
-            const isOpen = currentItem.classList.contains('active');
+    // التأكد من وجود أسئلة في الصفحة قبل التنفيذ
+    if (faqButtons.length > 0) {
+        faqButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const clickedItem = button.parentElement;
+                const isActive = clickedItem.classList.contains('active');
 
-            // إغلاق كل الأسئلة المفتوحة
-            document.querySelectorAll('.faq-item').forEach(item => {
-                item.classList.remove('active');
+                // 1. إغلاق جميع العناصر الأخرى
+                document.querySelectorAll('.faq-item').forEach(item => {
+                    item.classList.remove('active');
+                });
+
+                // 2. فتح العنصر المختار فقط إذا لم يكن مفتوحاً
+                if (!isActive) {
+                    clickedItem.classList.add('active');
+                }
             });
-
-            // فتح السؤال الذي تم الضغط عليه (إذا لم يكن مفتوحاً)
-            if (!isOpen) {
-                currentItem.classList.add('active');
-            }
         });
-    });
+    }
 });
