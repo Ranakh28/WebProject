@@ -11,27 +11,7 @@
 </head>
 <body>
 
-<header>
-    <div class="logo"><a href="../html/homePage.html">Makeup.</a></div>
-    <nav>
-        <a href="../html/homePage.html">Home</a>
-        <a href="#">About</a>
-        <a href="../html/shop.html">Products</a>
-        <a href="../html/admin_dashboard.html">Dashboard</a>
-        <a href="#">Contact</a>
-    </nav>
-    <div class="header-tools">
-        <div class="search-box">
-            <i class="fa-solid fa-magnifying-glass"></i>
-            <input type="text" placeholder="Search...">
-        </div>
-        <div class="icons">
-            <i class="fa-regular fa-heart"></i>
-            <i class="fa-solid fa-cart-shopping"></i>
-            <i class="fa-regular fa-user"></i>
-        </div>
-    </div>
-</header>
+<?php include 'header.php';?>
 
 <main class="admin-main">
     <div class="admin-wrapper">

@@ -1,0 +1,14 @@
+<?php
+$host = "localhost";
+$username = "root";
+$password = "";
+$dbname = "makeup.db";
+
+$conn = new mysqli($host, $username, $password, $dbname);
+
+// التحقق من الاتصال
+if ($conn->connect_error) {
+    die(json_encode(["error" => "Connection failed: " . $conn->connect_error]));
+}
+$conn->set_charset("utf8mb4");
+?>

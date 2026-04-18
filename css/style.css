@@ -176,21 +176,30 @@ nav a:hover {
 
 .main-footer {
     background: #fdfaf6;
-    padding: 60px 10%;
+    padding: 50px 5%;
     border-top: 1px solid #eee;
+    text-align: left;
 }
 
 .footer-grid {
-    display: flex;
-    justify-content: center;
-    gap: 150px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 30px;
+    margin-bottom: 30px;
 }
 
 .footer-col h3 {
     font-family: 'Playfair Display', serif;
-    color: var(--primary-color);
-    margin-bottom: 20px;
-    font-size: 1.2rem;
+    color: #4a1528;
+    margin-bottom: 15px;
+    font-size: 0.7rem;
+}
+
+.footer-col p {
+    font-size: 0.7rem;
+    color: #555;
+    margin-bottom: 10px;
+    line-height: 1.6;
 }
 
 .footer-col ul {
@@ -198,18 +207,100 @@ nav a:hover {
 }
 
 .footer-col ul li {
-    margin-bottom: 10px;
+    margin-bottom: 8px;
 }
 
-.footer-col ul li a {
-    text-decoration: none;
-    color: #555;
-    font-size: 0.95rem;
+.footer-col li a {
+    font-size: 0.7rem;
+    color: #555 !important; 
+    text-decoration: none !important;
+    transition: all 0.3s ease !important;
+}
+
+.footer-col li a:hover {
+    color: #ffb7c5 !important; 
+    text-decoration:none;
+    cursor: pointer;
+}
+.footer-social {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #ddd;
+}
+
+.footer-social a {
+    color: #4a1528;
+    font-size: 0.7rem;
     transition: 0.3s;
 }
 
-.footer-col ul li a:hover {
+.footer-social a:hover {
+     color: #ffb7c5;
+}
+
+.faq-container {
+    padding: 80px 10%;
+    max-width: 800px;
+    margin: 0 auto;
+    min-height: 50vh;
+}
+
+.faq-question {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+    border: none;
+    background: none;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.95rem;
     color: var(--primary-color);
+    cursor: pointer;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+.faq-question:hover {
+    color: var(--accent-hover);
+}
+
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+    color: #555;
+    font-size: 0.90rem;
+    line-height: 1.6;
+    padding: 0 10px;
+}
+
+.faq-item.active .faq-answer {
+    max-height: 200px;
+    padding: 10px 10px 20px 10px;
+}
+
+.faq-item.active .faq-question span {
+    transform: rotate(45deg);
+}
+
+.faq-category-title {
+    color: var(--primary-color);
+    margin-top: 40px;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--accent-hover);
+    font-family: 'Poppins', sans-serif;
+}
+
+.faq-item {
+    background: #fff;
+    border: 1px solid #eee;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.03);
 }
 
 /* تنسيقات لوحة التحكم (Admin Dashboard) */
@@ -220,7 +311,7 @@ nav a:hover {
 }
 
 .page-heading {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Poppins', sans-serif;
     color: var(--primary-color);
     text-align: center;
     margin-bottom: 40px;
