@@ -34,7 +34,7 @@
         <div class="faq-item">
             <button class="faq-question">Are your products authentic? <span>+</span></button>
             <div class="faq-answer">
-                <p>At somi Cosmetics, we guarantee that all our products are 100% authentic and sourced from authorized distributors.</p>
+                <p>At Glowberry Cosmetics, we guarantee that all our products are 100% authentic and sourced from authorized distributors.</p>
             </div>
         </div>
 
