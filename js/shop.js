@@ -17,13 +17,20 @@ function displayProducts(products) {
     }
 
     products.forEach(product => {
+        let statusLabel = product.quantity > 0 ? '' : '<p style="color: red; font-weight: bold; margin: 5px 0;">Sold Out</p>';
+        let buttonAttr = product.quantity > 0 ? '' : 'disabled style="background-color: #ccc; cursor: not-allowed;"';
+        let buttonText = product.quantity > 0 ? 'Add to Cart' : 'Out of Stock';
+
         container.innerHTML += `
             <div class="product" data-category="${product.category}">
                 <img src="../images/${product.image_path}" alt="${product.name}">
                 <h3>${product.name}</h3>
                 <p class="category">${product.category}</p>
+                ${statusLabel}
                 <p class="price">${product.price} SAR</p>
-                <button class="btn-add-cart" onclick="addToCart('${product.name}', ${product.price})">Add to Cart</button>
+                <button class="btn-add-cart" onclick="addToCart('${product.name}', ${product.price})" ${buttonAttr}>
+                    ${buttonText}
+                </button>
             </div>
         `;
     });
