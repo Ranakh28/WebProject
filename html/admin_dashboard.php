@@ -20,11 +20,16 @@
         <section class="admin-section">
             <h3>Add New Product</h3>
            
-      <form class="add-product-form">
-                <input type="text" placeholder="Product Name" required>
-                <input type="number" step="0.01" placeholder="Price ($)" required>
-                <input type="number" placeholder="Stock Quantity" required>
-                <button type="button" class="btn-main">Add to Store</button>
+            <form class="add-product-form" method="POST" action="admin_logic.php">
+                <input type="text" name="name" placeholder="Product Name" required>
+                <input type="number" step="0.01" name="price" placeholder="Price ($)" required>
+                <input type="text" name="description" placeholder="Description">
+                <select name="category" class="inline-input">
+                    <option value="lips">Lips</option>
+                    <option value="eyes">Eyes</option>
+                    <option value="face">Face</option>
+                </select>
+                <button type="submit" name="add_product" class="btn-main">Add to Store</button>
             </form>
         </section>
 
@@ -35,59 +40,44 @@
                     <tr>
                         <th>Product</th>
                         <th>Price</th>
-                        <th>Quantity</th>
+                        <th>Category</th>
                         <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
+                    <?php 
+                    // جلب المنتجات المخزنة
+                    $all_products = $conn->query("SELECT * FROM products");
+                    if ($all_products->num_rows > 0):
+                        while($row = $all_products->fetch_assoc()): 
+                    ?>
                     <tr>
-                        <td>Matte Lipstick - Rose</td>
-                        <td><input type="number" value="25.00" class="inline-input"></td>
-                        <td><input type="number" value="50" class="inline-input"></td>
+                        <td><?php echo $row['name']; ?></td>
+                        <td><?php echo $row['price']; ?> SAR</td>
+                        <td><?php echo $row['category']; ?></td>
                         <td>
-                            <button class="btn-save">Save</button>
-                            <button class="btn-delete" onclick="confirmDelete()">Delete</button>
+                            <a href="admin_logic.php?delete=<?php echo $row['id']; ?>" 
+                               class="btn-delete" 
+                               style="color: red; text-decoration: none; border: 1px solid red; padding: 5px; border-radius: 5px;"
+                               onclick="return confirmDelete()">Delete</a>
                         </td>
                     </tr>
-                    <tr>
-                        <td>Luxury Foundation</td>
-                        <td><input type="number" value="45.00" class="inline-input"></td>
-                        <td><input type="number" value="20" class="inline-input"></td>
-                        <td>
-                            <button class="btn-save">Save</button>
-                            <button class="btn-delete" onclick="confirmDelete()">Delete</button>
-                        </td>
-                    </tr>
+                    <?php 
+                        endwhile; 
+                    else:
+                        echo "<tr><td colspan='4'>No products found in database.</td></tr>";
+                    endif;
+                    ?>
                 </tbody>
             </table>
         </section>
     </div>
 </main>
 
-<footer class="main-footer">
-    <div class="footer-grid">
-        <div class="footer-col">
-            <h3>Company</h3>
-            <ul>
-                <li><a href="#">About Us</a></li>
-                <li><a href="#">Our Story</a></li>
-                <li><a href="#">Careers</a></li>
-            </ul>
-        </div>
-        <div class="footer-col">
-            <h3>Customer Service</h3>
-            <ul>
-                <li><a href="#">Track Order</a></li>
-                <li><a href="#">Return Policy</a></li>
-                <li><a href="#">Contact Us</a></li>
-            </ul>
-        </div>
-    </div>
-</footer>
+<?php include 'footer.php';?>
 
 <script>
     function confirmDelete() {
-        // رسالة التنبيه المطلوبة في تعليمات المشروع
         return confirm("Are you sure you want to delete this product?");
     }
 </script>
