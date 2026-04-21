@@ -284,17 +284,38 @@ nav a:hover {
 .footer-social a:hover {
      color: #ffb7c5;
 }
-
 .faq-container {
-    padding: 80px 10%;
-    max-width: 800px;
+    padding: 80px 5%;
+    max-width: 1200px; 
     margin: 0 auto;
     min-height: 50vh;
 }
-
+.faq-category-title {
+    grid-column: 1 / -1; 
+    color: var(--primary-color);
+    margin: 40px 0 20px 0;
+    font-size: 1.4rem;
+    border-left: 4px solid var(--accent-hover);
+    padding-left: 15px;
+}
+.faq-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); 
+    gap: 20px;
+}
 .faq-item {
-    border-bottom: 1px solid #eee;
-    margin-bottom: 10px;
+    background: #fff;
+    border-radius: 20px; 
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05); 
+    margin-bottom: 0; 
+    border: 1px solid #f9f9f9;
+    transition: 0.3s ease;
+    overflow: hidden;
+}
+
+.faq-item:hover {
+    transform: translateY(-5px);
+    border-color: var(--accent-hover);
 }
 
 .faq-question {
@@ -302,40 +323,42 @@ nav a:hover {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 0;
+    padding: 25px; 
     border: none;
     background: none;
     font-family: 'Poppins', sans-serif;
-    font-size: 0.9rem;
+    font-size: 1rem;
     color: var(--primary-color);
     cursor: pointer;
-    font-weight: 400;
-    transition: 0.3s;
-}
-
-.faq-question:hover {
-    color: var(--accent-hover);
+    font-weight: 500;
 }
 
 .faq-answer {
     max-height: 0;
     overflow: hidden;
-    transition: max-height 0.3s ease-out;
-    color: #555;
-    font-size: 0.7rem;
+    transition: all 0.3s ease-out;
+    color: #666;
+    font-size: 0.85rem; 
     line-height: 1.6;
-    padding: 0 10px;
+    padding: 0 25px;
+    background-color: #fdfdfd; 
 }
 
 .faq-item.active .faq-answer {
-    max-height: 200px;
-    padding: 10px 10px 20px 10px;
+    max-height: 300px;
+    padding: 10px 25px 25px 25px;
 }
-
-.faq-item.active .faq-question span {
-    transform: rotate(45deg);
+.faq-question span {
+    font-size: 1.5rem;
+    color: var(--accent-hover);
+    transition: 0.3s;
+    display: inline-block;
 }
-
+@media (max-width: 768px) {
+    .faq-grid {
+        grid-template-columns: 1fr;
+    }
+}
 .no-results-section {
     display: flex;
     justify-content: center;
