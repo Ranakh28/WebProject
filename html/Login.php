@@ -129,9 +129,9 @@ button:hover {
         <input type="text" name="username" placeholder="Username" required>
 
         <div class="password-wrapper">
-            <input type="password" name="password" id="passwordLogin" placeholder="Password" required>
-            <span class="toggle-password" onclick="togglePassword('passwordLogin')">👁</span>
-        </div>
+    <input type="password" name="password" id="passwordLogin" placeholder="Password" required>
+    <span class="toggle-password" id="iconLogin" onclick="togglePassword('passwordLogin','iconLogin')">👁</span>
+</div>
 
         <button type="submit" name="login">Login</button>
 
@@ -145,9 +145,9 @@ button:hover {
         <input type="email" name="email" placeholder="Email" required>
 
         <div class="password-wrapper">
-            <input type="password" name="password" id="passwordSignup" placeholder="Password" required>
-            <span class="toggle-password" onclick="togglePassword('passwordSignup')">👁</span>
-        </div>
+    <input type="password" name="password" id="passwordSignup" placeholder="Password" required>
+    <span class="toggle-password" id="iconSignup" onclick="togglePassword('passwordSignup','iconSignup')">👁</span>
+</div>
 
         <button type="submit" name="signup">Sign Up</button>
 
@@ -175,13 +175,18 @@ function toggleForms() {
         : "Already have an account? Login";
 }
 
-function togglePassword(id) {
-    const input = document.getElementById(id);
+function togglePassword(inputId, iconId) {
+    const input = document.getElementById(inputId);
+    const icon = document.getElementById(iconId);
+
+    if (!input || !icon) return; // safety check
 
     if (input.type === "password") {
         input.type = "text";
+        icon.textContent = "👁️‍🗨️"; // closed eye
     } else {
         input.type = "password";
+        icon.textContent = "👁"; // open eye
     }
 }
 </script>
