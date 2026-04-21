@@ -1,5 +1,4 @@
-<?php
-include "db.php";
+<?php include "db.php";
 
 // LOGIN
 if (isset($_POST['login'])) {
