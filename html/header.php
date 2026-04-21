@@ -1,13 +1,13 @@
 <header>
     <div class="logo"><a href="../html/homePage.php">Glowberry</a></div>
-    
-
 
     <div class="header-tools">
-        <div class="search-box">
-            <i class="fa-solid fa-magnifying-glass"></i>
-            <input type="text" placeholder="Search...">
-        </div>
+        <form action="../php/search.php" method="GET" class="search-box">
+            <button type="button" style="background: none; border: none; cursor: pointer;">
+                <i class="fa-solid fa-magnifying-glass" style=" color: white;"></i>
+            </button>
+            <input type="text" name="query" id="search" placeholder="Search..." autocomplete="off">
+        </form>
         
         <div class="icons">
             <i class="fa-solid fa-cart-shopping"></i>
@@ -16,4 +16,4 @@
     </div>
 </header>
 
-
+<div id="results"></div>
