@@ -88,7 +88,7 @@ nav a:hover {
     outline: none;
     caret-color: white;
 }
-
+ 
 .icons {
     display: flex;
     gap: 18px;
@@ -99,12 +99,57 @@ nav a:hover {
 .icons i {
     cursor: pointer;
 }
-
 .icons i:hover {
     color: var(--accent-hover);
     transform: scale(1.2); 
 }
 
+.no-results-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 100px 20px;
+    text-align: center;
+}
+
+.no-results-icon {
+    font-size: 80px;
+    color: #eee;
+    margin-bottom: 20px;
+}
+
+.no-results-content h2 {
+    color: var(--primary-color);
+    margin-bottom: 10px;
+    font-size: 1.8rem;
+}
+
+.no-results-content p {
+    color: #666;
+    margin-bottom: 5px;
+}
+
+.no-results-content .tips {
+    font-size: 0.9rem;
+    color: #999;
+    margin-bottom: 30px;
+}
+
+.btn-continue {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 12px 30px;
+    border-radius: 25px;
+    text-decoration: none;
+    transition: 0.3s;
+    display: inline-block;
+}
+
+.btn-continue:hover {
+    background-color: var(--accent-hover);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
 .hero {
     background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(../images/first-image.jpeg);
     background-position: center; 
@@ -291,6 +336,27 @@ nav a:hover {
     transform: rotate(45deg);
 }
 
+.no-results-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 80px 20px;
+    background-color: #fff; 
+}
+
+.no-results-card {
+    max-width: 500px;
+    text-align: center;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+.icon-box i {
+    font-size: 60px;
+    color: #f1f1f1;
+    margin-bottom: 25px;
+}
 .admin-main {
     padding: 50px 10%;
     background-color: #fafafa;
