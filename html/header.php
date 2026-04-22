@@ -14,6 +14,7 @@
             <i class="fa-regular fa-user"></i>
         </div>
     </div>
+    
 </header>
 
 <div id="results"></div>
