@@ -1,7 +1,9 @@
-<?php include "db.php";
+<?php
+include "db.php";
+$redirect = $_GET['redirect'] ?? 'homepage.php';
 
 // LOGIN
-if (isset($_POST['login'])) {
+if (isset($_POST['login']) || isset($_POST['admin_login'])) {
 
     $username = $_POST['username'];
     $password = $_POST['password'];
@@ -10,10 +12,34 @@ if (isset($_POST['login'])) {
     $result = $conn->query($sql);
 
     if ($result && $result->num_rows > 0) {
-        header("Location: homepage.php");
-        exit();
+
+        $user = $result->fetch_assoc();
+
+        // ✅ IF ADMIN BUTTON CLICKED
+        if (isset($_POST['admin_login'])) {
+
+            if ($user['role'] === 'admin') {
+                header("Location: admin_dashboard.php");
+                exit();
+            } else {
+                echo "<script>alert('You are not an admin');</script>";
+            }
+
+        } 
+        // ✅ NORMAL USER LOGIN
+        else {
+
+            if ($user['role'] === 'user') {
+                header("Location: " . $redirect);
+                exit();
+            } else {
+                echo "<script>alert('Admins must use admin login');</script>";
+            }
+
+        }
+
     } else {
-        echo "<script>alert('Wrong username or password or account does not exist');</script>";
+        echo "<script>alert('Wrong username or password');</script>";
     }
 }
 
@@ -123,7 +149,7 @@ button:hover {
     <h2 id="title">Login</h2>
 
     <!-- LOGIN FORM -->
-    <form method="POST" id="loginForm">
+    <form method="POST" action="?redirect=<?php echo htmlspecialchars($redirect); ?>" id="loginForm">
 
         <input type="text" name="username" placeholder="Username" required>
 
@@ -132,8 +158,10 @@ button:hover {
     <span class="toggle-password" id="iconLogin" onclick="togglePassword('passwordLogin','iconLogin')">👁</span>
 </div>
 
-        <button type="submit" name="login">Login</button>
-
+        <button type="submit" name="login">Login as customer</button>
+        <button type="submit" name="admin_login" style="background:black;">
+    👑 Admin Login
+</button>
     </form>
 
     <!-- SIGNUP FORM -->
