@@ -17,6 +17,12 @@
     <div class="admin-wrapper">
         <h1 class="page-heading">Store Management</h1>
         
+        <div style="text-align: center; margin: 20px 0;">
+    <a href="admin_orders.php" class="btn-add-cart" style="text-decoration: none; padding: 10px 25px;">
+        View Customer Orders Log 📋
+    </a>
+</div>
+        
         <section class="admin-section">
             <h3>Add New Product</h3>
            
@@ -48,36 +54,36 @@
         </thead>
         
         <tbody>
-            <?php 
-            // $all_products تم تعريفها في admin_logic.php المشمول في بداية الصفحة
-            $all_products = $conn->query("SELECT * FROM products");
-            if ($all_products && $all_products->num_rows > 0):
-                while($row = $all_products->fetch_assoc()): 
-            ?>
-            <tr>
-                <td><?php echo $row['name']; ?></td>
-                <td><?php echo $row['price']; ?> SAR</td>
-                <td>
-                    <?php 
-                    if ($row['quantity'] > 0) {
-                        echo $row['quantity']; 
-                    } else {
-                        echo '<span style="color: red; font-weight: bold;">Sold Out</span>';
-                    }
-                    ?>
-                </td>
-                <td><?php echo $row['category']; ?></td>
-                <td>
-                    <a href="admin_logic.php?delete=<?php echo $row['id']; ?>" class="btn-delete" onclick="return confirmDelete()">Delete</a>
-                </td>
-            </tr>
-            <?php 
-                endwhile;
-            else:
-                echo "<tr><td colspan='5' style='text-align:center;'>No products found.</td></tr>";
-            endif; 
-            ?>
-        </tbody>
+    <?php 
+    $all_products = $conn->query("SELECT * FROM products");
+    if ($all_products && $all_products->num_rows > 0):
+        while($row = $all_products->fetch_assoc()): 
+    ?>
+    <tr>
+        <form method="POST" action="admin_logic.php">
+            <td><?php echo $row['name']; ?></td>
+            <td>
+                <input type="number" step="0.01" name="price" value="<?php echo $row['price']; ?>" class="inline-input" style="width: 80px;">
+            </td>
+            <td>
+                <input type="number" name="quantity" value="<?php echo $row['quantity']; ?>" class="inline-input" style="width: 60px;">
+                <?php if ($row['quantity'] <= 0) echo '<br><span style="color: red; font-size: 12px;">Sold Out</span>'; ?>
+            </td>
+            <td><?php echo $row['category']; ?></td>
+            <td>
+                <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
+                <button type="submit" name="update_product" class="btn-save" style="background-color: #4CAF50; color: white; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer;">Save</button>
+                <a href="admin_logic.php?delete=<?php echo $row['id']; ?>" class="btn-delete" style="color: red; margin-left: 10px; text-decoration: none;" onclick="return confirmDelete()">Delete</a>
+            </td>
+        </form>
+    </tr>
+    <?php 
+        endwhile;
+    else:
+        echo "<tr><td colspan='5' style='text-align:center;'>No products found.</td></tr>";
+    endif; 
+    ?>
+</tbody>
     </table>
 </section>
     </div>

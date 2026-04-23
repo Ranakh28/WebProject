@@ -135,9 +135,8 @@ if (isset($_GET['action'])) {
                 foreach ($_SESSION['cart'] as $id => $item): 
                     $total = $item['price'] * $item['qty'];
                     $subtotal += $total;
-                    // ملاحظة: تأكد أن مصفوفة السلة تحتوي على مفتاح 'image'
-                    $imagePath = isset($item['image']) ? $item['image'] : 'placeholder.jpg'; 
-                ?>
+                    
+$imagePath = isset($item['img']) ? '../images/' . $item['img'] : '../images/placeholder.jpg';                ?>
                 <tr>
                     <td>
                         <div class="product-info">
@@ -171,8 +170,7 @@ if (isset($_GET['action'])) {
     <?php else: ?>
         <div class="empty-msg">
             <p>Your cart is empty! 🛒</p>
-            <a href="products.php" style="color: var(--primary); text-decoration: none; font-weight: bold;">← Back to Products</a>
-        </div>
+<a href="shop.php" style="color: var(--primary); text-decoration: none; font-weight: bold;">← Back to Shop</a>        </div>
     <?php endif; ?>
 </div>
 
