@@ -28,7 +28,7 @@ function displayProducts(products) {
                 <p class="category">${product.category}</p>
                 ${statusLabel}
                 <p class="price">${product.price} SAR</p>
-                <button class="btn-add-cart" onclick="addToCart('${product.name}', ${product.price})" ${buttonAttr}>
+                <button class="btn-add-cart" onclick="addToCart('${product.name}', ${product.price}, '${product.image_path}')" ${buttonAttr}>
                     ${buttonText}
                 </button>
             </div>
@@ -48,7 +48,20 @@ function filterProducts(category) {
     });
 }
 
-function addToCart(name, price) {
-    console.log("Added to cart: " + name);
-    alert(name + " has been added to your cart!");
+// التعديل: الدالة الآن ترسل البيانات لملف PHP ليتم حفظها في السلة
+function addToCart(name, price, img) {
+    const formData = new FormData();
+    formData.append('name', name);
+    formData.append('price', price);
+    formData.append('img', img);
+
+    fetch('add_to_cart.php', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => {
+        if (response.ok) {
+            alert(name + " has been added to your cart! 🛒");
+        }
+    });
 }
