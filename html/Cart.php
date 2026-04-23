@@ -165,7 +165,7 @@ if (isset($_GET['action'])) {
             <p>Tax (15%): <strong><?php echo number_format($subtotal * 0.15, 2); ?> SAR</strong></p>
             <h3 style="color: var(--primary);">Total: <?php echo number_format($subtotal * 1.15, 2); ?> SAR</h3>
             
-            <a href="Login.html" class="btn-pay">Proceed to Payment</a>
+            <a href="login.php?redirect=pay.php" class="btn-pay">Proceed to Payment</a>
         </div>
 
     <?php else: ?>
