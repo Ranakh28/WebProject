@@ -1,7 +1,6 @@
 <?php
 include "db.php";
-$redirect = $_GET['redirect'] ?? 'homepage.php';
-
+$from = $_GET['from'] ?? '';
 // LOGIN
 if (isset($_POST['login']) || isset($_POST['admin_login'])) {
 
@@ -30,9 +29,20 @@ if (isset($_POST['login']) || isset($_POST['admin_login'])) {
         else {
 
             if ($user['role'] === 'user') {
-                header("Location: " . $redirect);
-                exit();
-            } else {
+
+    // ✅ If came from Pay page
+    if ($from === 'pay') {
+        echo "<script>
+        alert('Your order was placed successfully');
+        window.location.href='homepage.php';
+        </script>";
+        exit();
+    }
+
+    // ✅ Normal login
+    header("Location: homepage.php");
+    exit();
+} else {
                 echo "<script>alert('Admins must use admin login');</script>";
             }
 
@@ -149,7 +159,7 @@ button:hover {
     <h2 id="title">Login</h2>
 
     <!-- LOGIN FORM -->
-    <form method="POST" action="?redirect=<?php echo htmlspecialchars($redirect); ?>" id="loginForm">
+<form method="POST" action="?from=<?php echo htmlspecialchars($from); ?>" id="loginForm">
 
         <input type="text" name="username" placeholder="Username" required>
 
