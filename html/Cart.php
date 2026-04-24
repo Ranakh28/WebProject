@@ -135,8 +135,9 @@ if (isset($_GET['action'])) {
                 foreach ($_SESSION['cart'] as $id => $item): 
                     $total = $item['price'] * $item['qty'];
                     $subtotal += $total;
-                    
-$imagePath = isset($item['img']) ? '../images/' . $item['img'] : '../images/placeholder.jpg';                ?>
+                    // ملاحظة: تأكد أن مصفوفة السلة تحتوي على مفتاح 'image'
+                    $imagePath = isset($item['image']) ? $item['image'] : 'placeholder.jpg'; 
+                ?>
                 <tr>
                     <td>
                         <div class="product-info">
@@ -164,13 +165,14 @@ $imagePath = isset($item['img']) ? '../images/' . $item['img'] : '../images/plac
             <p>Tax (15%): <strong><?php echo number_format($subtotal * 0.15, 2); ?> SAR</strong></p>
             <h3 style="color: var(--primary);">Total: <?php echo number_format($subtotal * 1.15, 2); ?> SAR</h3>
             
-            <a href="login.php?redirect=pay.php" class="btn-pay">Proceed to Payment</a>
+<a href="login.php?from=pay">Proceed to Payment</a>
         </div>
 
     <?php else: ?>
         <div class="empty-msg">
             <p>Your cart is empty! 🛒</p>
-<a href="shop.php" style="color: var(--primary); text-decoration: none; font-weight: bold;">← Back to Shop</a>        </div>
+            <a href="products.php" style="color: var(--primary); text-decoration: none; font-weight: bold;">← Back to Products</a>
+        </div>
     <?php endif; ?>
 </div>
 
