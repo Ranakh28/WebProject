@@ -1,6 +1,7 @@
 <?php
 include "db.php";
 $from = $_GET['from'] ?? '';
+
 // LOGIN
 if (isset($_POST['login']) || isset($_POST['admin_login'])) {
 
@@ -14,7 +15,7 @@ if (isset($_POST['login']) || isset($_POST['admin_login'])) {
 
         $user = $result->fetch_assoc();
 
-        // ✅ IF ADMIN BUTTON CLICKED
+        // ADMIN LOGIN
         if (isset($_POST['admin_login'])) {
 
             if ($user['role'] === 'admin') {
@@ -25,24 +26,23 @@ if (isset($_POST['login']) || isset($_POST['admin_login'])) {
             }
 
         } 
-        // ✅ NORMAL USER LOGIN
+        // NORMAL USER LOGIN
         else {
 
             if ($user['role'] === 'user') {
 
-    // ✅ If came from Pay page
-    if ($from === 'pay') {
-        echo "<script>
-        alert('Your order was placed successfully');
-        window.location.href='homepage.php';
-        </script>";
-        exit();
-    }
+                if ($from === 'pay') {
+                    echo "<script>
+                    alert('Your order was placed successfully');
+                    window.location.href='homepage.php';
+                    </script>";
+                    exit();
+                }
 
-    // ✅ Normal login
-    header("Location: homepage.php");
-    exit();
-} else {
+                header("Location: homepage.php");
+                exit();
+
+            } else {
                 echo "<script>alert('Admins must use admin login');</script>";
             }
 
@@ -59,14 +59,22 @@ if (isset($_POST['signup'])) {
     $username = $_POST['username'];
     $email = $_POST['email'];
     $password = $_POST['password'];
+    $confirm_password = $_POST['confirm_password'];
 
-    $sql = "INSERT INTO users (username, email, password)
-            VALUES ('$username', '$email', '$password')";
-
-    if ($conn->query($sql)) {
-        echo "<script>alert('Account created! You can now log in');</script>";
+    // ✅ STILL KEEP SERVER CHECK
+    if ($password !== $confirm_password) {
+        echo "<script>alert('Passwords do not match');</script>";
     } else {
-        echo "<script>alert('Error creating account');</script>";
+
+        $sql = "INSERT INTO users (username, email, password)
+                VALUES ('$username', '$email', '$password')";
+
+        if ($conn->query($sql)) {
+            echo "<script>alert('Account created! You can now log in');</script>";
+        } else {
+            echo "<script>alert('Error creating account');</script>";
+        }
+
     }
 }
 ?>
@@ -159,32 +167,40 @@ button:hover {
     <h2 id="title">Login</h2>
 
     <!-- LOGIN FORM -->
-<form method="POST" action="?from=<?php echo htmlspecialchars($from); ?>" id="loginForm">
+    <form method="POST" action="?from=<?php echo htmlspecialchars($from); ?>" id="loginForm">
 
         <input type="text" name="username" placeholder="Username" required>
 
         <div class="password-wrapper">
-    <input type="password" name="password" id="passwordLogin" placeholder="Password" required>
-    <span class="toggle-password" id="iconLogin" onclick="togglePassword('passwordLogin','iconLogin')">👁</span>
-</div>
+            <input type="password" name="password" id="passwordLogin" placeholder="Password" required>
+            <span class="toggle-password" id="iconLogin" onclick="togglePassword('passwordLogin','iconLogin')">👁</span>
+        </div>
 
         <button type="submit" name="login">Login as customer</button>
+
         <button type="submit" name="admin_login" style="background:black;">
-    👑 Admin Login
-</button>
+            👑 Admin Login
+        </button>
+
     </form>
 
     <!-- SIGNUP FORM -->
-    <form method="POST" id="signupForm" style="display:none;">
+    <form method="POST" id="signupForm" style="display:none;" onsubmit="return validateSignup()">
 
         <input type="text" name="username" placeholder="Username" required>
 
         <input type="email" name="email" placeholder="Email" required>
 
         <div class="password-wrapper">
-    <input type="password" name="password" id="passwordSignup" placeholder="Password" required>
-    <span class="toggle-password" id="iconSignup" onclick="togglePassword('passwordSignup','iconSignup')">👁</span>
-</div>
+            <input type="password" name="password" id="passwordSignup" placeholder="Password" required>
+            <span class="toggle-password" id="iconSignup" onclick="togglePassword('passwordSignup','iconSignup')">👁</span>
+        </div>
+
+        <!-- ✅ CONFIRM PASSWORD -->
+        <div class="password-wrapper">
+            <input type="password" name="confirm_password" id="confirmPassword" placeholder="Confirm Password" required>
+            <span class="toggle-password" id="iconConfirm" onclick="togglePassword('confirmPassword','iconConfirm')">👁</span>
+        </div>
 
         <button type="submit" name="signup">Sign Up</button>
 
@@ -212,18 +228,31 @@ function toggleForms() {
         : "Already have an account? Login";
 }
 
+// ✅ PREVENT SUBMIT IF PASSWORDS DON'T MATCH
+function validateSignup() {
+    const password = document.getElementById("passwordSignup").value;
+    const confirm = document.getElementById("confirmPassword").value;
+
+    if (password !== confirm) {
+        alert("Passwords do not match");
+        return false;
+    }
+
+    return true;
+}
+
 function togglePassword(inputId, iconId) {
     const input = document.getElementById(inputId);
     const icon = document.getElementById(iconId);
 
-    if (!input || !icon) return; // safety check
+    if (!input || !icon) return;
 
     if (input.type === "password") {
         input.type = "text";
-        icon.textContent = "👁️‍🗨️"; // closed eye
+        icon.textContent = "👁️‍🗨️";
     } else {
         input.type = "password";
-        icon.textContent = "👁"; // open eye
+        icon.textContent = "👁";
     }
 }
 </script>
